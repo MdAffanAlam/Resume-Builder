@@ -80,7 +80,7 @@ const Details = () => {
     }
   };
 
-  const base_url="https://resume-builder-4-rojs.onrender.com"
+  const base_url="https://resume-builder-1-m12b.onrender.com"
 
   return (
     <div>
