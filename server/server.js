@@ -33,12 +33,12 @@ app.post("/create-pdf", (req, res) => {
       return res.status(400).send("Invalid template name");
   }
 
-  var options = {
-    format: "A4",
-    phantomPath:
-      "C:\\Users\\HP\\Downloads\\phantomjs-2.1.1-windows\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe",
-    type: "pdf",
+  const options = {
+    format: 'A4',
+    orientation: 'portrait',
+    border: '10mm',
     timeout: 30000,
+    phantomPath: phantomjs.path
   };
 
   const pdfFilePath = path.join(__dirname, "Resume.pdf");
@@ -59,9 +59,10 @@ app.post("/create-pdf", (req, res) => {
 });
 
 app.get("/fetch-pdf", (req, res) => {
-  res.sendFile(`${__dirname}/Resume.pdf`);
+  const pdfFilePath = path.join(__dirname, "Resume.pdf");
+  res.sendFile(pdfFilePath);
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on port=${port}`);
+  console.log(`Server is running on port ${port}`);
 });
