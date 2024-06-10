@@ -38,7 +38,7 @@ app.post("/create-pdf", (req, res) => {
     orientation: 'portrait',
     border: '10mm',
     timeout: 30000,
-    phantomPath:path.join(__dirname, "node_modules/phantomjs-prebuilt/bin/phantomjs")
+    phantomPath: phantomjs.path // Use the path provided by phantomjs-prebuilt
   };
 
   const pdfFilePath = path.join(__dirname, "Resume.pdf");
