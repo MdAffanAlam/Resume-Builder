@@ -80,7 +80,7 @@ const Details = () => {
     }
   };
 
-  const base_url="https://resume-builder-1-m12b.onrender.com"
+  const base_url="https://resume-builder-1-m12b.onrender.com/"
 
   return (
     <div>
@@ -121,12 +121,12 @@ const Details = () => {
           onClick={() => {
             if (page === FormTitle.length - 1) {
               axios
-                .post(`${base_url}/create-pdf`, {
+                .post(`${base_url}create-pdf`, {
                   template: formData.template,
                   data: formData,
                 })
                 .then(() =>
-                  axios.get(`${base_url}/fetch-pdf`, {
+                  axios.get(`${base_url}fetch-pdf`, {
                     responseType: "blob",
                   })
                 )
