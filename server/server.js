@@ -8,7 +8,7 @@ const pdfSample3 = require("./Templates/template-3");
 const app = express();
 const port = 4000;
 
-app.use(cors());
+app.use(cors());  // Use CORS middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -32,16 +32,14 @@ app.post("/create-pdf", (req, res) => {
   }
 
   try {
-    pdf
-      .create(selectedTemplate(data), {})
-      .toFile("Resume.pdf", (err, result) => {
-        if (err) {
-          console.error("PDF creation error:", err);
-          return res.status(500).send("Failed to create PDF");
-        }
-        console.log("PDF created successfully at", result.filename);
-        res.send("<script>alert('PDF created successfully');</script>");
-      });
+    pdf.create(selectedTemplate(data), {}).toFile("Resume.pdf", (err) => {
+      if (err) {
+        console.error("PDF creation error:", err);
+        return res.status(500).send("Failed to create PDF");
+      }
+      console.log("PDF created successfully");
+      res.send("<script>alert('PDF created successfully');</script>");
+    });
   } catch (error) {
     console.error("Unhandled error:", error);
     res.status(500).send("An unexpected error occurred");
