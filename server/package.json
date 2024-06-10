@@ -5,7 +5,8 @@
     "html-pdf": "^3.0.1",
     "mongoose": "^8.4.0",
     "nodemon": "^3.1.2",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "phantomjs-prebuilt": "^2.1.16"
   },
   "scripts": {
     "start": "node server.js",
