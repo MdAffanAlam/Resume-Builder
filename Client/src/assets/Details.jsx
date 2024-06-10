@@ -80,6 +80,8 @@ const Details = () => {
     }
   };
 
+  const base_url="https://resume-builder-4-rojs.onrender.com"
+
   return (
     <div>
       <div className="d-flex justify-content-center">
@@ -119,12 +121,12 @@ const Details = () => {
           onClick={() => {
             if (page === FormTitle.length - 1) {
               axios
-                .post("http://localhost:4000/create-pdf", {
+                .post(`${base_url}/create-pdf`, {
                   template: formData.template,
                   data: formData,
                 })
                 .then(() =>
-                  axios.get("http://localhost:4000/fetch-pdf", {
+                  axios.get(`${base_url}/fetch-pdf`, {
                     responseType: "blob",
                   })
                 )

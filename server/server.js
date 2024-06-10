@@ -32,14 +32,16 @@ app.post("/create-pdf", (req, res) => {
   }
 
   try {
-    pdf.create(selectedTemplate(data), {}).toFile("Resume.pdf", (err) => {
-      if (err) {
-        console.error("PDF creation error:", err);
-        return res.status(500).send("Failed to create PDF");
-      }
-      console.log("PDF created successfully");
-      res.send("<script>alert('PDF created successfully');</script>");
-    });
+    pdf
+      .create(selectedTemplate(data), {})
+      .toFile("Resume.pdf", (err, result) => {
+        if (err) {
+          console.error("PDF creation error:", err);
+          return res.status(500).send("Failed to create PDF");
+        }
+        console.log("PDF created successfully at", result.filename);
+        res.send("<script>alert('PDF created successfully');</script>");
+      });
   } catch (error) {
     console.error("Unhandled error:", error);
     res.status(500).send("An unexpected error occurred");
