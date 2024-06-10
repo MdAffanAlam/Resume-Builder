@@ -50,6 +50,10 @@ app.get("/fetch-pdf", (req, res) => {
   res.sendFile(`${__dirname}/Resume.pdf`);
 });
 
+app.get("/hello",(req,res)=>{
+  res.send("hello world")
+})
+
 app.listen(port, () => {
   console.log(`Server is running on port=${port}`);
 });
