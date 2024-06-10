@@ -1,0 +1,46 @@
+.PersonalDetails-main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form-details-PersonalDetails{
+  width: 22em;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.user-data {
+    margin: 12px 10px;
+}
+
+.form-input-control {
+    background: rgb(242, 240, 240);
+    border-radius: 12px;
+    width: 90%;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.form-input-control:hover {
+    transform: scale(1.05);
+}
+
+.form-input-control:focus {
+    background-color: rgb(230, 230, 230);
+    transform: scale(1.05);
+}
+
+.label {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: large;
+}
+
+@media screen and (max-width:380px){
+    .form-details-PersonalDetails{
+        width: 16em;
+      }
+}

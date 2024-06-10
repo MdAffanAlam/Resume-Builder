@@ -1,0 +1,157 @@
+.about-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.feedback-container,
+.contact-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.sub-feedback-container,
+.sub-contact-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-top: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  padding: 25px 50px;
+}
+.sub-contact-container{
+  flex-wrap: wrap;
+}
+.sub-feedback-container{
+  flex-wrap: wrap-reverse;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 18em;
+}
+
+.feedback-form-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 20em;
+}
+
+.input-group {
+  margin: 6px 0;
+}
+
+label {
+  display: block;
+  margin: 3px 4px;
+  padding: 3px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size: large;
+}
+
+.form-feedback-control {
+  background: rgb(242, 240, 240);
+  border-radius: 12px;
+  width: 90%;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.form-feedback-control:hover {
+  transform: scale(1.05);
+}
+
+.form-feedback-control:focus {
+  background-color: rgb(230, 230, 230);
+  transform: scale(1.05);
+}
+
+
+.btn-feedback-form,
+.btn-contact-form {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #8e3f15;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+
+.btn-feedback-form:hover {
+  background-color: #d73266;
+}
+
+.btn-contact-form:hover {
+  background-color: #d73266;
+}
+
+.feedback-image img {
+  height: 15rem;
+  width: 25rem;
+}
+
+.contact-image img {
+  height: 19rem;
+  width: 22rem;
+}
+
+.about-section h2 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size: x-large;
+  text-decoration: underline;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.about-section {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-transform: capitalize;
+  font-size: large;
+}
+
+@media (max-width: 510px) {
+  .sub-feedback-container {
+    padding: 25px 12px;
+  }
+
+  .sub-contact-container {
+    padding: 25px 6px;
+  }
+  .feedback-form-left {
+    width: 16em;
+  }
+  .contact-form{
+    width: 15em;
+  }
+  .contact-form h2 {
+    text-align: center;
+  }
+
+  .feedback-form-left h2 {
+    text-align: center;
+  }
+
+  .feedback-image img {
+    height: 9em;
+    width: 14em;
+  }
+
+  .contact-image img {
+    height: 14em;
+    width: 17em;
+  }
+}

@@ -1,0 +1,126 @@
+.signup-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    height: 100%;
+}
+
+.sub-signup-conatiner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+    gap: 65px;
+    margin-top: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    padding: 15px 50px;
+}
+
+.signup-container h2 {
+    text-align: center;
+}
+
+.details-form-signup {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.details-form-signup label {
+    display: block;
+    margin: 3px 4px;
+    padding: 3px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: large;
+}
+
+.form-signup-control {
+    background: rgb(242, 240, 240);
+    border-radius: 12px;
+    width: 90%;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.form-signup-control:hover {
+    transform: scale(1.05);
+}
+
+.form-signup-control:focus {
+    background-color: rgb(230, 230, 230);
+    transform: scale(1.05);
+}
+
+.btn-center {
+    text-align: center;
+}
+
+.btn-signup {
+    padding: 10px 20px;
+    background-color: #be4809;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-signup:hover {
+    background-color: #ed9223;
+}
+
+.btn-signup span {
+    margin-left: 5px;
+}
+
+.signup-link {
+    margin-top: 10px;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+}
+
+.right-side img {
+    width: 22em;
+}
+
+
+.password-input-signup {
+    position: relative;
+}
+
+.password-input-signup button {
+    position: absolute;
+    border: 1px solid rgb(242, 240, 240);
+    right: 8px;
+    top: 7px;
+}
+
+.password-input-signup:focus {
+    background-color: rgb(230, 230, 230);
+    transform: scale(1.05);
+}
+
+@media only screen and (max-width:764px){
+    .sub-signup-conatiner{
+        gap:40px;
+        padding: 15px 20px;
+        width: 26em;
+    }
+}
+
+
+@media only screen and (max-width:485px){
+    .sub-signup-conatiner{
+        width: 16.6em;
+    }
+    .right-side img{
+        width: 13.6em;
+    }
+}

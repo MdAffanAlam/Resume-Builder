@@ -1,0 +1,65 @@
+.main-template {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.resume-template {
+  border: 2px solid transparent;
+  padding: 20px;
+  border-radius: 10px;
+  transition: border-color 0.3s;
+  width: 8em;
+  height: 12em;
+}
+
+.resume-1 {
+  background-image: url('./src/images/sample1.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.resume-2 {
+  background-image: url('./src/images/sample2.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+}
+
+.resume-3 {
+  background-image: url('./src/images/sample3.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.resume-template.selected {
+  border-color: black;
+}
+
+.resume-template-content {
+  text-align: center;
+}
+
+.resume-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.resume-description {
+  font-size: 1em;
+  margin-bottom: 20px;
+}
+
+.select-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 12px;
+  border: 1px solid greenyellow;
+  background-color: greenyellow;
+}

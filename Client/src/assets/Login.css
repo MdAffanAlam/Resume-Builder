@@ -1,0 +1,121 @@
+.login-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+.sub-login-conatiner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 65px;
+    margin-top: 30px;
+    margin-bottom: 32px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    padding: 40px 60px;
+}
+.login-container h2{
+    text-align: center;
+}
+
+.details-form-login{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.details-form-login label{
+    display: block;
+    margin: 3px 4px;
+    padding: 3px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: large;
+}
+.form-login-control {
+    background: rgb(242, 240, 240);
+    border-radius: 12px;
+    width: 90%;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.form-login-control:hover {
+    transform: scale(1.05);
+}
+.form-login-control:focus {
+    background-color: rgb(230, 230, 230);
+    transform: scale(1.05);
+}
+
+.btn-center {
+    text-align: center;
+    margin-bottom: 8px;
+    margin-top: 6px;
+}
+
+.btn-login {
+    padding: 10px 20px;
+    background-color: #be4809;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-login:hover {
+    background-color: #ed9223;
+}
+
+.btn-login span {
+    margin-left: 5px;
+}
+
+.signup-link{
+    margin-top: 18px;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+}
+
+.left-side img{
+    width: 15rem;
+}
+
+
+.password-input-login {
+    position: relative;
+}
+
+.password-input-login button {
+    position: absolute;
+    border: 1px solid rgb(242, 240, 240);
+    right: 8px;
+    top: 7px;
+}
+
+.password-input-login:focus {
+    background-color: rgb(230, 230, 230);
+}
+
+
+@media only screen and (max-width:690px){
+  .sub-login-conatiner{
+    gap:40px;
+    padding: 15px 20px;
+    width: 25em;
+  }
+}
+
+@media only screen and (max-width:485px){
+    .sub-login-conatiner{
+        width: 15.8em;
+    }
+    .left-side img{
+        width: 13em;
+    }
+}
