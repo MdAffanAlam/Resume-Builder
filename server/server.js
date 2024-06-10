@@ -1,73 +1,56 @@
 const express = require("express");
 const cors = require("cors");
-const path = require("path");
+const pdf = require("html-pdf");
 const pdfSample1 = require("./Templates/template-1");
 const pdfSample2 = require("./Templates/template-2");
 const pdfSample3 = require("./Templates/template-3");
-const puppeteer = require("puppeteer");
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = 4000;
 
-const corsOptions = {
-  origin: '', 
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-  optionsSuccessStatus: 204
-};
-
-app.use(cors(corsOptions));
+app.use(cors());  // Use CORS middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.post('/create-pdf', async (req, res) => {
+app.post("/create-pdf", (req, res) => {
   const { template, data } = req.body;
-
-  console.log('Received request:', req.body);
-
-  if (!template || !data) {
-    return res.status(400).send('Invalid request: template and data are required');
-  }
 
   let selectedTemplate;
   switch (template) {
-    case 'template-1':
+    case "template-1":
       selectedTemplate = pdfSample1;
       break;
-    case 'template-2':
+    case "template-2":
       selectedTemplate = pdfSample2;
       break;
-    case 'template-3':
+    case "template-3":
       selectedTemplate = pdfSample3;
       break;
     default:
-      console.error('Invalid template name:', template);
-      return res.status(400).send('Invalid template name');
+      console.error("Invalid template name:", template);
+      return res.status(400).send("Invalid template name");
   }
 
-  const htmlContent = selectedTemplate(data);
-  const pdfFilePath = path.join(__dirname, 'Resume.pdf');
-
   try {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.setContent(htmlContent);
-    await page.pdf({ path: pdfFilePath, format: 'A4' });
-
-    await browser.close();
-    console.log('PDF created successfully');
-    res.sendFile(pdfFilePath);
+    pdf.create(selectedTemplate(data), {}).toFile("Resume.pdf", (err) => {
+      if (err) {
+        console.error("PDF creation error:", err);
+        return res.status(500).send("Failed to create PDF");
+      }
+      console.log("PDF created successfully");
+      res.send("<script>alert('PDF created successfully');</script>");
+    });
   } catch (error) {
-    console.error('PDF creation error:', error);
-    res.status(500).send('Failed to create PDF');
+    console.error("Unhandled error:", error);
+    res.status(500).send("An unexpected error occurred");
   }
 });
 
 app.get("/fetch-pdf", (req, res) => {
-  const pdfFilePath = path.join(__dirname, "Resume.pdf");
-  res.sendFile(pdfFilePath);
+  res.sendFile(`${__dirname}/Resume.pdf`);
 });
 
+
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on port=${port}`);
 });
