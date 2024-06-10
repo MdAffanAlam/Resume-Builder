@@ -1,11 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const pdf = require("html-pdf");
-const path = require("path"); // Import path module
+const path = require("path"); 
 const pdfSample1 = require("./Templates/template-1");
 const pdfSample2 = require("./Templates/template-2");
 const pdfSample3 = require("./Templates/template-3");
-const phantomjs = require("phantomjs-prebuilt"); // Import phantomjs-prebuilt
+const phantomjs = require("phantomjs-prebuilt");
 
 const app = express();
 const port =process.env.PORT || 4000;
@@ -34,7 +34,9 @@ app.post("/create-pdf", (req, res) => {
   }
 
   const options = {
-    phantomPath: phantomjs.path // Specify the path to PhantomJS
+    format: 'Legal',
+    orientation: 'portrait',
+    phantomPath: '/usr/local/bin/phantomjs'
   };
 
   const pdfFilePath = path.join(__dirname, "Resume.pdf"); // Generate PDF file path
