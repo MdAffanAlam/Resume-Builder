@@ -92,9 +92,12 @@ const Details = () => {
     const missingFields = requiredFields.filter(field => !formData[field]);
 
     if (missingFields.length > 0) {
-      console.error(`Missing required fields: ${missingFields.join(', ')}`);
+      console.error(`Missing required fields: ${missingFields.join(',')}`);
       return;
     }
+
+    // Log form data for debugging purposes
+    console.log('Form Data:', formData);
 
     axios
       .post('https://resume-builder-1-m12b.onrender.com/create-pdf', {
@@ -112,7 +115,8 @@ const Details = () => {
         saveAs(pdfBlob, 'Resume.pdf');
       })
       .catch((error) => {
-        console.error('Error during PDF generation:', error);
+        // Log the error for debugging purposes
+        console.error('Error during PDF generation:', error.response?.data || error.message || error);
       });
   };
 
