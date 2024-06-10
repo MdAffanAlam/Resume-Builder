@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const pdf = require("html-pdf");
+const path = require("path");
 const pdfSample1 = require("./Templates/template-1");
 const pdfSample2 = require("./Templates/template-2");
 const pdfSample3 = require("./Templates/template-3");
@@ -11,6 +12,8 @@ const port = 4000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Ensure the correct path to PhantomJS
 const phantomPath = path.resolve(
   __dirname,
   "node_modules/phantomjs-prebuilt/lib/phantom/bin/phantomjs"
@@ -36,16 +39,14 @@ app.post("/create-pdf", (req, res) => {
   }
 
   try {
-    pdf
-      .create(selectedTemplate(data), { phantomPath })
-      .toFile("Resume.pdf", (err) => {
-        if (err) {
-          console.error("PDF creation error:", err);
-          return res.status(500).send("Failed to create PDF");
-        }
-        console.log("PDF created successfully");
-        res.send("PDF created successfully");
-      });
+    pdf.create(selectedTemplate(data), { phantomPath }).toFile("Resume.pdf", (err) => {
+      if (err) {
+        console.error("PDF creation error:", err);
+        return res.status(500).send("Failed to create PDF");
+      }
+      console.log("PDF created successfully");
+      res.send("PDF created successfully");
+    });
   } catch (error) {
     console.error("Unhandled error:", error);
     res.status(500).send("An unexpected error occurred");
