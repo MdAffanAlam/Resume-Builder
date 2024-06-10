@@ -1,17 +1,16 @@
 const express = require("express");
 const cors = require("cors");
-const pdf = require("html-pdf");
 const path = require("path");
 const pdfSample1 = require("./Templates/template-1");
 const pdfSample2 = require("./Templates/template-2");
 const pdfSample3 = require("./Templates/template-3");
-const phantomjs = require("phantomjs-prebuilt");
+const puppeteer = require("puppeteer");
 
 const app = express();
 const port = process.env.PORT || 4000;
 
 const corsOptions = {
-  origin: 'http://127.0.0.1:5173', // frontend's origin
+  origin: '', 
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   optionsSuccessStatus: 204
@@ -21,7 +20,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.post('/create-pdf', (req, res) => {
+app.post('/create-pdf', async (req, res) => {
   const { template, data } = req.body;
 
   console.log('Received request:', req.body);
@@ -46,32 +45,23 @@ app.post('/create-pdf', (req, res) => {
       return res.status(400).send('Invalid template name');
   }
 
-  const options = {
-    height: '100000px',
-    width: '800px', // Adjust width as needed
-    orientation: 'portrait',
-    type: 'png',
-    quality: '20',
-    timeout: 3000,
-    phantomPath: './node_modules/phantomjs-prebuilt/bin/phantomjs'
-  };
+  const htmlContent = selectedTemplate(data);
   const pdfFilePath = path.join(__dirname, 'Resume.pdf');
 
   try {
-    pdf.create(selectedTemplate(data), options).toFile(pdfFilePath, (err) => {
-      if (err) {
-        console.error('PDF creation error:', err);
-        return res.status(500).send('Failed to create PDF',err);
-      }
-      console.log('PDF created successfully');
-      res.sendFile(pdfFilePath);
-    });
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.setContent(htmlContent);
+    await page.pdf({ path: pdfFilePath, format: 'A4' });
+
+    await browser.close();
+    console.log('PDF created successfully');
+    res.sendFile(pdfFilePath);
   } catch (error) {
-    console.error('Unhandled error:', error);
-    res.status(500).send('An unexpected error occurred');
+    console.error('PDF creation error:', error);
+    res.status(500).send('Failed to create PDF');
   }
 });
-
 
 app.get("/fetch-pdf", (req, res) => {
   const pdfFilePath = path.join(__dirname, "Resume.pdf");
