@@ -14,49 +14,57 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.post("/create-pdf", (req, res) => {
+app.post('/create-pdf', (req, res) => {
   const { template, data } = req.body;
+
+  console.log('Received request:', req.body);
+
+  if (!template || !data) {
+    return res.status(400).send('Invalid request: template and data are required');
+  }
 
   let selectedTemplate;
   switch (template) {
-    case "template-1":
+    case 'template-1':
       selectedTemplate = pdfSample1;
       break;
-    case "template-2":
+    case 'template-2':
       selectedTemplate = pdfSample2;
       break;
-    case "template-3":
+    case 'template-3':
       selectedTemplate = pdfSample3;
       break;
     default:
-      console.error("Invalid template name:", template);
-      return res.status(400).send("Invalid template name");
+      console.error('Invalid template name:', template);
+      return res.status(400).send('Invalid template name');
   }
 
   const options = {
-    format: 'A4',
+    height: '100000px',
+    width: '800px', // Adjust width as needed
     orientation: 'portrait',
-    border: '10mm',
-    timeout: 30000,
-    phantomPath: phantomjs.path // Use the path provided by phantomjs-prebuilt
+    type: 'png',
+    quality: '20',
+    timeout: 3000,
+    phantomPath: './node_modules/phantomjs-prebuilt/bin/phantomjs'
   };
-
-  const pdfFilePath = path.join(__dirname, "Resume.pdf");
+  const pdfFilePath = path.join(__dirname, 'Resume.pdf');
 
   try {
     pdf.create(selectedTemplate(data), options).toFile(pdfFilePath, (err) => {
       if (err) {
-        console.error("PDF creation error:", err);
-        return res.status(500).send("Failed to create PDF");
+        console.error('PDF creation error:', err);
+        return res.status(500).send('Failed to create PDF');
       }
-      console.log("PDF created successfully");
+      console.log('PDF created successfully');
       res.sendFile(pdfFilePath);
     });
   } catch (error) {
-    console.error("Unhandled error:", error);
-    res.status(500).send("An unexpected error occurred");
+    console.error('Unhandled error:', error);
+    res.status(500).send('An unexpected error occurred');
   }
 });
+
 
 app.get("/fetch-pdf", (req, res) => {
   const pdfFilePath = path.join(__dirname, "Resume.pdf");

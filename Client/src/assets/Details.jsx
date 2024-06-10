@@ -29,7 +29,7 @@ const Details = () => {
     exp1_dur: "",
     exp2_org: "",
     exp2_pos: "",
-    exp2_des: "",
+    exp2_desc: "",
     exp2_dur: "",
 
     proj1_title: "",
@@ -80,7 +80,41 @@ const Details = () => {
     }
   };
 
+  const handleDownloadPDF = () => {
+    const requiredFields = [
+      'template', 'name', 'email', 'phone', 'linkedin', 'github', 'skills',
+      'exp1_org', 'exp1_pos', 'exp1_desc', 'exp1_dur', 'exp2_org', 'exp2_pos', 'exp2_desc', 'exp2_dur',
+      'proj1_title', 'proj1_link', 'proj1_desc', 'proj2_title', 'proj2_link', 'proj2_desc',
+      'edu1_school', 'edu1_year', 'edu1_qualification', 'edu1_desc', 'edu2_school', 'edu2_year', 'edu2_qualification', 'edu2_desc',
+      'extra_1', 'extra_2'
+    ];
 
+    const missingFields = requiredFields.filter(field => !formData[field]);
+
+    if (missingFields.length > 0) {
+      console.error(`Missing required fields: ${missingFields.join(', ')}`);
+      return;
+    }
+
+    axios
+      .post('https://resume-builder-1-m12b.onrender.com/create-pdf', {
+        template: formData.template,
+        data: formData,
+      })
+      .then(() =>
+        axios.get('https://resume-builder-1-m12b.onrender.com/fetch-pdf', {
+          responseType: 'blob',
+        })
+      )
+      .then((res) => {
+        const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
+        setSuccess(true && res.status === 200);
+        saveAs(pdfBlob, 'Resume.pdf');
+      })
+      .catch((error) => {
+        console.error('Error during PDF generation:', error);
+      });
+  };
 
   return (
     <div>
@@ -120,26 +154,7 @@ const Details = () => {
           className="btn-main btn-next-primary"
           onClick={() => {
             if (page === FormTitle.length - 1) {
-              axios
-                .post(`https://resume-builder-1-m12b.onrender.com/create-pdf`, {
-                  template: formData.template,
-                  data: formData,
-                })
-                .then(() =>
-                  axios.get(`https://resume-builder-1-m12b.onrender.com/fetch-pdf`, {
-                    responseType: "blob",
-                  })
-                )
-                .then((res) => {
-                  const pdfBlob = new Blob([res.data], {
-                    type: "application/pdf",
-                  });
-                  setSuccess(true && res.status === 200);
-                  saveAs(pdfBlob, "Resume.pdf");
-                })
-                .catch((error) => {
-                  console.error("Error during PDF generation:", error);
-                });
+              handleDownloadPDF();
             } else {
               setPage((currPage) => currPage + 1);
             }
