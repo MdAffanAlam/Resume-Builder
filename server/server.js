@@ -8,7 +8,7 @@ const pdfSample3 = require("./Templates/template-3");
 const app = express();
 const port = 4000;
 
-app.use(cors());  // Use CORS middleware
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -38,7 +38,7 @@ app.post("/create-pdf", (req, res) => {
         return res.status(500).send("Failed to create PDF");
       }
       console.log("PDF created successfully");
-      res.send("<script>alert('PDF created successfully');</script>");
+      res.send("PDF created successfully");
     });
   } catch (error) {
     console.error("Unhandled error:", error);
@@ -49,10 +49,6 @@ app.post("/create-pdf", (req, res) => {
 app.get("/fetch-pdf", (req, res) => {
   res.sendFile(`${__dirname}/Resume.pdf`);
 });
-
-app.get("/hello",(req,res)=>{
-  res.send("hello world")
-})
 
 app.listen(port, () => {
   console.log(`Server is running on port=${port}`);
