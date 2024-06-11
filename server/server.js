@@ -9,7 +9,9 @@ const pdfSample3 = require("./Templates/template-3");
 const app = express();
 const port = process.env.PORT || 4000;
 
-app.use(cors()); 
+// Enable CORS for all routes
+app.use(cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -33,10 +35,10 @@ app.post("/create-pdf", (req, res) => {
  
   try {
     // Generate PDF
-    pdf.create(selectedTemplate(data), { phantomPath: path.join(__dirname, '\\server\\node_modules\\phantomjs-prebuilt\\lib\\phantom\\bin\\phantomjs.exe') }).toFile("Resume.pdf", (err) => {
+    pdf.create(selectedTemplate(data), { phantomPath: path.join(__dirname, 'node_modules/phantomjs-prebuilt/lib/phantom/bin/phantomjs.exe') }).toFile("Resume.pdf", (err) => {
       if (err) {
         console.error("PDF creation error:", err);
-        return res.status(500).send("Failed to create PDF" ,err);
+        return res.status(500).send("Failed to create PDF", err);
       }
       console.log("PDF created successfully");
       // Sending response after PDF creation
@@ -49,7 +51,7 @@ app.post("/create-pdf", (req, res) => {
 });
 
 app.get("/fetch-pdf", (req, res) => {
-  res.sendFile(`${__dirname}/Resume.pdf`);
+  res.sendFile(path.join(__dirname, "Resume.pdf"));
 });
 
 app.listen(port, () => {
