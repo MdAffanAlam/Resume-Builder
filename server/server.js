@@ -9,7 +9,12 @@ const pdfSample3 = require("./Templates/template-3");
 const app = express();
 const port = 4000;
 
-app.use(cors());  // Use CORS middleware
+const corsOptions = {
+  origin: "http://127.0.0.1:5173",
+};
+
+// Use CORS middleware with options
+app.use(cors(corsOptions)); 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
