@@ -7,14 +7,9 @@ const pdfSample2 = require("./Templates/template-2");
 const pdfSample3 = require("./Templates/template-3");
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
-const corsOptions = {
-  origin: "http://127.0.0.1:5173",
-};
-
-// Use CORS middleware with options
-app.use(cors(corsOptions)); 
+app.use(cors()); 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -38,7 +33,7 @@ app.post("/create-pdf", (req, res) => {
  
   try {
     // Generate PDF
-    pdf.create(selectedTemplate(data), { phantomPath: path.join(__dirname, "/path/to/phantomjs") }).toFile("Resume.pdf", (err) => {
+    pdf.create(selectedTemplate(data), { phantomPath: path.join(__dirname, "/usr/local/bin/phantomjs") }).toFile("Resume.pdf", (err) => {
       if (err) {
         console.error("PDF creation error:", err);
         return res.status(500).send("Failed to create PDF" ,err);
