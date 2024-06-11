@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const pdf = require("html-pdf");
+const path = require("path");
 const pdfSample1 = require("./Templates/template-1");
 const pdfSample2 = require("./Templates/template-2");
 const pdfSample3 = require("./Templates/template-3");
@@ -32,7 +33,7 @@ app.post("/create-pdf", (req, res) => {
  
   try {
     // Generate PDF
-    pdf.create(selectedTemplate(data), {}).toFile("Resume.pdf", (err) => {
+    pdf.create(selectedTemplate(data), { phantomPath: path.join(__dirname, "/path/to/phantomjs") }).toFile("Resume.pdf", (err) => {
       if (err) {
         console.error("PDF creation error:", err);
         return res.status(500).send("Failed to create PDF" ,err);

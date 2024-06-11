@@ -116,13 +116,13 @@ const Details = () => {
               console.log("Form Data:", formData);
 
               axios
-                .post("https://resume-builder-1-m12b.onrender.com/create-pdf", {
+                .post("http://localhost:4000/create-pdf", {
                   template: formData.template,
                   data: formData,
                 })
                 .then(() =>
                   axios.get(
-                    "https://resume-builder-1-m12b.onrender.com/fetch-pdf",
+                    "http://localhost:4000/fetch-pdf",
                     {
                       responseType: "blob",
                     }
