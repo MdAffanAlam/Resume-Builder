@@ -35,7 +35,7 @@ app.post("/create-pdf", (req, res) => {
     pdf.create(selectedTemplate(data), {}).toFile("Resume.pdf", (err) => {
       if (err) {
         console.error("PDF creation error:", err);
-        return res.status(500).send("Failed to create PDF");
+        return res.status(500).send("Failed to create PDF" ,err);
       }
       console.log("PDF created successfully");
       // Sending response after PDF creation
