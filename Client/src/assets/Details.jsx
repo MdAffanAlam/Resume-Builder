@@ -15,14 +15,12 @@ const Details = () => {
   const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
     template: "",
-
     name: "",
     email: "",
     phone: "",
     linkedin: "",
     github: "",
     skills: "",
-
     exp1_org: "",
     exp1_pos: "",
     exp1_desc: "",
@@ -31,14 +29,12 @@ const Details = () => {
     exp2_pos: "",
     exp2_desc: "",
     exp2_dur: "",
-
     proj1_title: "",
     proj1_link: "",
     proj1_desc: "",
     proj2_title: "",
     proj2_link: "",
     proj2_desc: "",
-
     edu1_school: "",
     edu1_year: "",
     edu1_qualification: "",
@@ -47,7 +43,6 @@ const Details = () => {
     edu2_year: "",
     edu2_qualification: "",
     edu2_desc: "",
-
     extra_1: "",
     extra_2: "",
   });
@@ -78,46 +73,6 @@ const Details = () => {
     } else {
       return <Extras formData={formData} setFormData={setFormData} />;
     }
-  };
-
-  const handleDownloadPDF = () => {
-    const requiredFields = [
-      'template', 'name', 'email', 'phone', 'linkedin', 'github', 'skills',
-      'exp1_org', 'exp1_pos', 'exp1_desc', 'exp1_dur', 'exp2_org', 'exp2_pos', 'exp2_desc', 'exp2_dur',
-      'proj1_title', 'proj1_link', 'proj1_desc', 'proj2_title', 'proj2_link', 'proj2_desc',
-      'edu1_school', 'edu1_year', 'edu1_qualification', 'edu1_desc', 'edu2_school', 'edu2_year', 'edu2_qualification', 'edu2_desc',
-      'extra_1', 'extra_2'
-    ];
-
-    const missingFields = requiredFields.filter(field => !formData[field]);
-
-    if (missingFields.length > 0) {
-      console.error(`Missing required fields: ${missingFields.join(',')}`);
-      return;
-    }
-
-    // Log form data for debugging purposes
-    console.log('Form Data:', formData);
-
-    axios
-      .post('https://resume-builder-1-m12b.onrender.com/create-pdf', {
-        template: formData.template,
-        data: formData,
-      })
-      .then(() =>
-        axios.get('https://resume-builder-1-m12b.onrender.com/fetch-pdf', {
-          responseType: 'blob',
-        })
-      )
-      .then((res) => {
-        const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
-        setSuccess(true && res.status === 200);
-        saveAs(pdfBlob, 'Resume.pdf');
-      })
-      .catch((error) => {
-        // Log the error for debugging purposes
-        console.error('Error during PDF generation:', error.response?.data || error.message || error);
-      });
   };
 
   return (
@@ -158,7 +113,35 @@ const Details = () => {
           className="btn-main btn-next-primary"
           onClick={() => {
             if (page === FormTitle.length - 1) {
-              handleDownloadPDF();
+              console.log("Form Data:", formData);
+
+              axios
+                .post("https://resume-builder-1-m12b.onrender.com/create-pdf", {
+                  template: formData.template,
+                  data: formData,
+                })
+                .then(() =>
+                  axios.get(
+                    "https://resume-builder-1-m12b.onrender.com/fetch-pdf",
+                    {
+                      responseType: "blob",
+                    }
+                  )
+                )
+                .then((res) => {
+                  const pdfBlob = new Blob([res.data], {
+                    type: "application/pdf",
+                  });
+                  setSuccess(true && res.status === 200);
+                  saveAs(pdfBlob, "Resume.pdf");
+                })
+                .catch((error) => {
+                  // Log the error for debugging purposes
+                  console.error(
+                    "Error during PDF generation:",
+                    error.response?.data || error.message || error
+                  );
+                });
             } else {
               setPage((currPage) => currPage + 1);
             }
@@ -166,11 +149,11 @@ const Details = () => {
         >
           {page === FormTitle.length - 1 ? (
             <>
-              Download Pdf <FaDownload style={{ marginLeft: "5px"}} />
+              Download Pdf <FaDownload style={{ marginLeft: "5px" }} />
             </>
           ) : (
             <>
-              Next <FaArrowRight style={{ marginLeft: "5px" }}/>
+              Next <FaArrowRight style={{ marginLeft: "5px" }} />
             </>
           )}
         </button>

@@ -14,7 +14,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.post("/create-pdf", (req, res) => {
   const { template, data } = req.body;
-
   let selectedTemplate;
   switch (template) {
     case "template-1":
@@ -30,14 +29,16 @@ app.post("/create-pdf", (req, res) => {
       console.error("Invalid template name:", template);
       return res.status(400).send("Invalid template name");
   }
-
+ 
   try {
+    // Generate PDF
     pdf.create(selectedTemplate(data), {}).toFile("Resume.pdf", (err) => {
       if (err) {
         console.error("PDF creation error:", err);
         return res.status(500).send("Failed to create PDF");
       }
       console.log("PDF created successfully");
+      // Sending response after PDF creation
       res.send("<script>alert('PDF created successfully');</script>");
     });
   } catch (error) {
@@ -49,7 +50,6 @@ app.post("/create-pdf", (req, res) => {
 app.get("/fetch-pdf", (req, res) => {
   res.sendFile(`${__dirname}/Resume.pdf`);
 });
-
 
 app.listen(port, () => {
   console.log(`Server is running on port=${port}`);
