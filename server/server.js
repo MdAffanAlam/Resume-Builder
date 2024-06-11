@@ -21,7 +21,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.post("/create-pdf", (req, res) => {
   const { template, data } = req.body;
-  console.log(template, data);
+  console.log("Received request with template:", template);
+  console.log("Data:", data);
   
   let selectedTemplate;
   switch (template) {
@@ -41,6 +42,8 @@ app.post("/create-pdf", (req, res) => {
 
   try {
     const htmlContent = selectedTemplate(data);
+    console.log("Generated HTML content:", htmlContent);
+    
     const options = { format: 'A4' }; // Add any additional options if needed
 
     pdf.create(htmlContent, options).toFile(path.join(__dirname, "Resume.pdf"), (err, result) => {
