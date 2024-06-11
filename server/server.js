@@ -9,14 +9,11 @@ const pdfSample3 = require("./Templates/template-3");
 const app = express();
 const port = process.env.PORT || 4000;
 
-// Enable CORS for all routes
-app.use(cors());
-
+app.use(cors()); 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-const puppeteer = require('puppeteer');
 
-app.post("/create-pdf", async (req, res) => {
+app.post("/create-pdf", (req, res) => {
   const { template, data } = req.body;
   let selectedTemplate;
   switch (template) {
@@ -33,25 +30,26 @@ app.post("/create-pdf", async (req, res) => {
       console.error("Invalid template name:", template);
       return res.status(400).send("Invalid template name");
   }
-  
+ 
   try {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.setContent(selectedTemplate(data));
-    await page.pdf({ path: 'Resume.pdf', format: 'A4' });
-    await browser.close();
-    console.log("PDF created successfully");
-    // Sending response after PDF creation
-    res.send("<script>alert('PDF created successfully');</script>");
+    // Generate PDF
+    pdf.create(selectedTemplate(data),  { phantomPath: path.join(__dirname, 'node_modules/phantomjs-prebuilt/lib/phantom/bin/phantomjs.exe') }).toFile("Resume.pdf", (err) => {
+      if (err) {
+        console.error("PDF creation error:", err);
+        return res.status(500).send("Failed to create PDF" ,err);
+      }
+      console.log("PDF created successfully");
+      // Sending response after PDF creation
+      res.send("<script>alert('PDF created successfully');</script>");
+    });
   } catch (error) {
-    console.error("PDF creation error:", error);
-    res.status(500).send("Failed to create PDF", error);
+    console.error("Unhandled error:", error);
+    res.status(500).send("An unexpected error occurred");
   }
 });
 
-
 app.get("/fetch-pdf", (req, res) => {
-  res.sendFile(path.join(__dirname, "Resume.pdf"));
+  res.sendFile(`${__dirname}/Resume.pdf`);
 });
 
 app.listen(port, () => {
