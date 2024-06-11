@@ -33,7 +33,7 @@ app.post("/create-pdf", (req, res) => {
  
   try {
     // Generate PDF
-    pdf.create(selectedTemplate(data), { phantomPath: path.join(__dirname, "/usr/local/bin/phantomjs") }).toFile("Resume.pdf", (err) => {
+    pdf.create(selectedTemplate(data), { phantomPath: path.join(__dirname, '\\server\\node_modules\\phantomjs-prebuilt\\lib\\phantom\\bin\\phantomjs.exe') }).toFile("Resume.pdf", (err) => {
       if (err) {
         console.error("PDF creation error:", err);
         return res.status(500).send("Failed to create PDF" ,err);
