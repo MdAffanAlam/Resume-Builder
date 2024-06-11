@@ -8,18 +8,12 @@ const pdfSample3 = require("./Templates/template-3");
 const app = express();
 const port = 4000;
 
-app.use(cors()); 
+app.use(cors());  // Use CORS middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.post("/create-pdf", (req, res) => {
   const { template, data } = req.body;
-
-  if (!template || !data) {
-    return res.status(400).send("Template and data are required");
-  }
-
-  // Ensure that the template exists
   let selectedTemplate;
   switch (template) {
     case "template-1":
@@ -35,13 +29,13 @@ app.post("/create-pdf", (req, res) => {
       console.error("Invalid template name:", template);
       return res.status(400).send("Invalid template name");
   }
-
+ 
   try {
     // Generate PDF
     pdf.create(selectedTemplate(data), {}).toFile("Resume.pdf", (err) => {
       if (err) {
         console.error("PDF creation error:", err);
-        return res.status(500).send("Failed to create PDF", err);
+        return res.status(500).send("Failed to create PDF" ,err);
       }
       console.log("PDF created successfully");
       // Sending response after PDF creation
