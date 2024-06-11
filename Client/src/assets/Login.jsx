@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Login.css";
+import loginImage from '../assets/images/login.jpg';
 import { MdOutlineMarkEmailUnread } from "react-icons/md";
 import {
   FaLock,
@@ -19,7 +20,7 @@ const Login = () => {
     <div className="login-container">
       <div className="sub-login-conatiner">
         <div className="left-side">
-          <img src="./src/images/login.jpg" alt="Left Side" />
+          <img src={loginImage} alt="Left Side" />
         </div>
         <div className="right-side">
           <form className="details-form-login">

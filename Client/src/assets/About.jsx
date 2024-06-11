@@ -1,5 +1,7 @@
 import React from "react";
 import "./About.css";
+import Feedback from '../assets/images/feedback.jpg';
+import Contact from '../assets/images/contact.jpg';
 import {
   FaEnvelope,
   FaPaperPlane,
@@ -106,7 +108,7 @@ const About = () => {
             </form>
           </div>
           <div className="feedback-image">
-            <img src="./src/images/feedback.jpg" alt="Feedback" />
+            <img src={Feedback} alt="Feedback" />
           </div>
         </div>
       </section>
@@ -114,7 +116,7 @@ const About = () => {
       <section className="contact-container">
         <div className="sub-contact-container">
           <div className="contact-image">
-            <img src="./src/images/contact.jpg" alt="Contact Us" />
+            <img src={Contact} alt="Contact Us" />
           </div>
           <div className="contact-form">
             <h2>Contact Us</h2>

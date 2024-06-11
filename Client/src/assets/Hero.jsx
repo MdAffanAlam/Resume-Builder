@@ -1,5 +1,7 @@
 import React from "react";
 import "./Hero.css";
+import hero from '../assets/images/hero.jpg';
+import arrow from '../assets/images/arrow1.png';
 import { FaRocket, FaPlay, FaSmile, FaPen } from "react-icons/fa"; // Importing additional icons
 
 
@@ -38,10 +40,10 @@ function Hero() {
                 </button>
               </Link>
             </div>
-            <div className="arrow"><img src="./src/images/arrow1.png" alt="" /></div>
+            <div className="arrow"><img src={arrow} alt="" /></div>
           </div>
           <div className="right-hero-content">
-            <img src="./src/images/hero.jpg" alt="hero" />
+            <img src={hero} alt="hero" />
             
           </div>
         </div>

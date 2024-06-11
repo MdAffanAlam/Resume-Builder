@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Navbar.css";
 import Hamburger from 'hamburger-react';
 import { Link } from "react-router-dom";
+import logo from '../assets/images/logo.png'
 import { AiFillHome, AiOutlineInfoCircle, AiOutlineLogin, AiOutlineUserAdd } from "react-icons/ai"; // Import icons from react-icons
 
 function Navbar() {
@@ -18,7 +19,7 @@ function Navbar() {
   return (
     <nav className="nav_head">
       <div className="heading">
-        <h4 className="logo"> <img src="./src/images/logo.png" alt="" /> ResumeCraft</h4>
+        <h4 className="logo"> <img src={logo} alt="" /> ResumeCraft</h4>
       </div>
       <div className={`container ${isOpen ? 'mobile' : ''}`}>
         <ul className={`nav_links ${isOpen ? 'mobile_links' : ''}`}>

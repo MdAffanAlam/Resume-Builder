@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.post("/create-pdf", (req, res) => {
   const { template, data } = req.body;
+  console.log(template, data);
   let selectedTemplate;
   switch (template) {
     case "template-1":
@@ -30,13 +31,13 @@ app.post("/create-pdf", (req, res) => {
       console.error("Invalid template name:", template);
       return res.status(400).send("Invalid template name");
   }
- 
+
   try {
     // Generate PDF
-    pdf.create(selectedTemplate(data),  { phantomPath: path.join(__dirname, 'node_modules/phantomjs-prebuilt/lib/phantom/bin/phantomjs.exe') }).toFile("Resume.pdf", (err) => {
+    pdf.create(selectedTemplate(data)).toFile("Resume.pdf", (err) => {
       if (err) {
         console.error("PDF creation error:", err);
-        return res.status(500).send("Failed to create PDF" ,err);
+        return res.status(500).send("Failed to create PDF", err);
       }
       console.log("PDF created successfully");
       // Sending response after PDF creation

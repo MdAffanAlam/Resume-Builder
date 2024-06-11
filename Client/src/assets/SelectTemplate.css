@@ -16,14 +16,14 @@
 }
 
 .resume-1 {
-  background-image: url('./src/images/sample1.png');
+  background-image: url('../assets/images/sample1.png');
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
 }
 
 .resume-2 {
-  background-image: url('./src/images/sample2.png');
+  background-image: url('../assets/images/sample2.png');
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -31,7 +31,7 @@
 }
 
 .resume-3 {
-  background-image: url('./src/images/sample3.png');
+  background-image: url('../assets/images/sample3.png');
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;

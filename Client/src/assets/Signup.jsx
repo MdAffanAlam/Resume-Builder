@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Signup.css";
+import SignupImage from '../assets/images/signup.jpg';
 import { MdOutlineMarkEmailUnread } from "react-icons/md";
 import {
   FaUser,
@@ -105,7 +106,7 @@ const Signup = () => {
           </div>
         </div>
         <div className="right-side">
-          <img src="./src/images/signup.jpg" alt="Right Side" />
+          <img src={SignupImage}alt="Right Side" />
         </div>
       </div>
     </div>

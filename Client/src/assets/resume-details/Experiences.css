@@ -1,6 +1,6 @@
 .experience-main-container {
     width: 100%;
-    padding: calc(100%-12px);
+    padding: 10px 0px;
     background-color: #f8f8f8;
 }
 
@@ -12,13 +12,13 @@
     align-items: center;
     flex-wrap: wrap;
     padding: 30px;
-    gap: 25px;
+    gap: 35px;
 }
 
 .first-experience,
 .second-experience {
     background: #fff;
-    min-width: 30%;
+    min-width: 35%;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);

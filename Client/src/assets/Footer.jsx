@@ -35,28 +35,28 @@ function Footer() {
               target="_blank"
               style={{ color: "#4267B2" }}
             >
-              <FaFacebook size={22} />
+              <FaFacebook size={24} style={{ padding: '0 4px'}}/>
             </Link>
             <Link
               to="https://www.linkedin.com/in/md-affan-alam-839487241"
               target="_blank"
               style={{ color: "#0077B5" }}
             >
-              <FaLinkedin size={22} />
+              <FaLinkedin size={24} style={{ padding: '0 4px'}} />
             </Link>
             <Link
               to="https://www.instagram.com/i_affan5?igsh=MWVybDc5ZXFkcDZpeg=="
               target="_blank"
               style={{ color: "#C13584" }}
             >
-              <FaInstagram size={22} />
+              <FaInstagram size={24} style={{ padding: '0 4px'}}/>
             </Link>
             <Link
               to="https://github.com/MdAffanAlam"
               target="_blank"
               style={{ color: "whitesmoke" }}
             >
-              <FaGithub size={22} />
+              <FaGithub size={24} style={{ padding: '0 4px'}} />
             </Link>
           </div>
         </div>
