@@ -5,6 +5,7 @@ const path = require("path");
 const pdfSample1 = require("./Templates/template-1");
 const pdfSample2 = require("./Templates/template-2");
 const pdfSample3 = require("./Templates/template-3");
+const phantomjs = require('phantomjs-prebuilt');
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -18,6 +19,11 @@ app.use(cors({
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.get('/', (req, res) => {
+  console.log("PhantomJS Path:", phantomjs.path);
+  res.send(`PhantomJS Path: ${phantomjs.path}`);
+});
 
 app.post("/create-pdf", (req, res) => {
   const { template, data } = req.body;
@@ -44,7 +50,10 @@ app.post("/create-pdf", (req, res) => {
     const htmlContent = selectedTemplate(data);
     console.log("Generated HTML content:", htmlContent);
 
-    const options = { format: 'A4', phantomPath: require('phantomjs-prebuilt').path }; // Add custom path to PhantomJS if needed
+    const options = { 
+      format: 'A4', 
+      phantomPath: phantomjs.path // Dynamically setting the path to PhantomJS
+    };
 
     pdf.create(htmlContent, options).toFile(path.join(__dirname, "Resume.pdf"), (err, result) => {
       if (err) {
@@ -72,4 +81,5 @@ app.get("/fetch-pdf", (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
+  console.log("PhantomJS Path:", phantomjs.path); // Log the path to PhantomJS
 });
