@@ -52,7 +52,7 @@ app.post("/create-pdf", (req, res) => {
 
     const options = { 
       format: 'A4', 
-      phantomPath: phantomjs.path // Dynamically setting the path to PhantomJS
+      phantomPath: phantomjs.path.replace(/\\/g, '/') // Normalize the path to use forward slashes
     };
 
     pdf.create(htmlContent, options).toFile(path.join(__dirname, "Resume.pdf"), (err, result) => {
