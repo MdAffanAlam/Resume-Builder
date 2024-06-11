@@ -74,7 +74,6 @@ const Details = () => {
       return <Extras formData={formData} setFormData={setFormData} />;
     }
   };
-  const url="https://resume-builder-z6gm.onrender.com";
 
   return (
     <div>
@@ -117,13 +116,13 @@ const Details = () => {
               console.log("Form Data:", formData);
 
               axios
-                .post(`${url}/create-pdf`, {
+                .post("https://resume-builder-z6gm.onrender.com/create-pdf", {
                   template: formData.template,
                   data: formData,
                 })
                 .then(() =>
                   axios.get(
-                    `${url}/fetch-pdf`,
+                    "https://resume-builder-z6gm.onrender.com/fetch-pdf",
                     {
                       responseType: "blob",
                     }
