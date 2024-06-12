@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
+
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -17,7 +18,7 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
   return (
-    <div className="login-container">
+    <><div className="login-container">
       <div className="sub-login-conatiner">
         <div className="left-side">
           <img src={loginImage} alt="Left Side" />
@@ -75,6 +76,7 @@ const Login = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

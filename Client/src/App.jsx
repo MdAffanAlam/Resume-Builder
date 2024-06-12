@@ -7,13 +7,14 @@ import Details from './assets/Details';
 import Login from './assets/Login';
 import Signup from './assets/Signup';
 import About from './assets/About';
-import Footer from './assets/Footer';
+import Footer from './assets/Footer'
 
 
 
 function App() {
   return (
     <Router> 
+      
       <Navbar />
       <Routes>
         <Route path="/" element={<Hero />} />

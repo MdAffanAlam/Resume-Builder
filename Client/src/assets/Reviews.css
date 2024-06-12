@@ -60,17 +60,23 @@
     margin: 4px 0;
 }
 
-@media only screen and (max-width:780px) {
-    .testimonials {
-        height: 45vh;
+@media only screen and (min-width: 600px) and (max-width: 1024px) {
+    .testimonials{
+        height: 20vh;
     }
-}
+  }
 
+  @media only screen and (min-width: 480px) and (max-width: 580px) {
+    .testimonials{
+        height: 20vh;
+    }
+  }
 @media only screen and (max-width:480px) {
     .feedback{
-        margin: 10px 0px;
+        margin: 14px 0px;
     }
     .testimonials{
-        margin: 25px 0px;
+        margin: 40px 0px;
+        height: 40vh;
     }
 }
