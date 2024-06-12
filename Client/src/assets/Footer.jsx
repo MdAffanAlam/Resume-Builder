@@ -20,7 +20,7 @@ function Footer() {
             Email:
             <Link
               to={`mailto:mdaffanalam2022@gmail.com`}
-              style={{ textDecoration: "none", color: "white" }}
+              style={{ textDecoration: "none", color: "white" ,textTransform:"lowercase"}}
             >
               {" "}
               mdaffanalam2022@gmail.com

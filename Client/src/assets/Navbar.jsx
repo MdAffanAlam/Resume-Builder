@@ -19,7 +19,8 @@ function Navbar() {
   return (
     <nav className="nav_head">
       <div className="heading">
-        <h4 className="logo"> <img src={logo} alt="" /> ResumeCraft</h4>
+        <h4 className="logo"> <img src={logo} alt="" /></h4>
+        <span> ResumeCraft </span>
       </div>
       <div className={`container ${isOpen ? 'mobile' : ''}`}>
         <ul className={`nav_links ${isOpen ? 'mobile_links' : ''}`}>
