@@ -45,7 +45,7 @@
 .form-login-control:hover {
     transform: scale(1.05);
 }
-.form-login-control:focus {
+.form-login-control:focus{
     background-color: rgb(230, 230, 230);
     transform: scale(1.05);
 }
@@ -94,11 +94,11 @@
 .password-input-login button {
     position: absolute;
     border: 1px solid rgb(242, 240, 240);
-    right: 8px;
+    right: 32px;
     top: 7px;
 }
 
-.password-input-login:focus {
+.password-input-login:focus + .password-input-login button{
     background-color: rgb(230, 230, 230);
 }
 
@@ -112,7 +112,7 @@
 
 @media only screen and (max-width:485px){
     .sub-login-conatiner{
-        width: 15.8em;
+        width: 19em;
     }
     .left-side img{
         width: 13em;

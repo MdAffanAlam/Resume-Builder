@@ -9,12 +9,24 @@ import Reviews from "./Reviews";
 import Sample from "./Sample";
 import Companies from "./Companies";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 function Hero() {
+  const location = useLocation();
+
+  useEffect(() => {
+      if (location.state?.registrationSuccess) {
+          toast.success("Registration Successfully");
+      }
+  }, [location.state]);
   return (
     <>
       <div className="hero">
+
         <div className="content">
+          
           <div className="left-hero-content">
             <div className="head">
               <h2>

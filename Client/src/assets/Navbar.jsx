@@ -3,7 +3,7 @@ import "./Navbar.css";
 import Hamburger from 'hamburger-react';
 import { Link } from "react-router-dom";
 import logo from '../assets/images/logo.png'
-import { AiFillHome, AiOutlineInfoCircle, AiOutlineLogin, AiOutlineUserAdd } from "react-icons/ai"; // Import icons from react-icons
+import { AiFillHome, AiOutlineInfoCircle, AiOutlineLogin, AiOutlineUserAdd } from "react-icons/ai"; 
 
 function Navbar() {
   const [isOpen, setOpen] = useState(false);
@@ -22,7 +22,7 @@ function Navbar() {
         <h4 className="logo"> <img src={logo} alt="" /></h4>
         <span> ResumeCraft </span>
       </div>
-      <div className={`container ${isOpen ? 'mobile' : ''}`}>
+      <div className={`container ${isOpen ? 'mobile height-custom' : ''}`}>
         <ul className={`nav_links ${isOpen ? 'mobile_links' : ''}`}>
           <li className="list">
             <Link to="/" className="links" onClick={handleCloseMobileLinks}>

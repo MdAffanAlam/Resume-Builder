@@ -1,21 +1,21 @@
 :root {
-    --background: #ecf0f3;
+    --background: rgba(154, 151, 151, 0.389);
     --box-shadow: -3px -3px 7px #ffffff,
         3px 3px 5px #ceced1,
         inset -3px -3px 7px #ffffff,
         inset 3px 3px 5px #ceced1;
 }
 
-
 .nav_head {
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    height: 100px;
-    background: var(--background);
-    box-shadow: var(--box-shadow);
-} 
+    height: 90px;
+    background-color: rgba(189, 189, 189, 0.389);
+    /* background: var(--background);
+    box-shadow: var(--box-shadow); */
+}
 
 .heading {
     margin-left: 1.2rem;
@@ -23,13 +23,14 @@
     justify-content: center;
     align-items: center;
 }
- 
-.logo img{
+
+.logo img {
     width: 26px;
     height: 29px;
 }
-.heading span{
-    font-family:  monospace;
+
+.heading span {
+    font-family: monospace;
     font-weight: bold;
     font-size: x-large;
     margin-left: 8px;
@@ -40,6 +41,7 @@
     justify-content: center;
 }
 
+
 .nav_links {
     display: flex;
     list-style: none;
@@ -49,12 +51,11 @@
 }
 
 .nav_links .list {
-    padding: 4px 12px;
+    padding: 4px 18px;
     border-radius: 6px;
     margin-right: 12px;
-    background: var(--background);
-    box-shadow: var(--box-shadow);
     text-transform: uppercase;
+    box-shadow: var(--box-shadow);
 }
 
 .nav_links .list .links {
@@ -64,21 +65,23 @@
 
 .nav_links .list .links:hover,
 .nav_links .list .links:focus {
-   color: rgb(4, 4, 255);
+    color: rgb(4, 4, 255);
 }
+
 .nav_links .list-btn .button:hover,
 .nav_links .list-btn .button:focus {
-   color: rgb(100, 100, 238);
+    color: rgb(100, 100, 238);
 }
 
 
-.list-btn{
+.list-btn {
     padding: 4px 12px;
     background: #000000;
     border-radius: 6px;
     margin-right: 11px;
 }
-.list-btn .button{
+
+.list-btn .button {
     text-decoration: none;
     text-transform: uppercase;
     color: white;
@@ -94,27 +97,44 @@
     .hamburger-menu {
         display: block;
     }
-    .container{
+
+    .container {
         position: absolute;
         top: 95px;
         width: 100%;
-        background: var(--background);
         box-shadow: var(--box-shadow);
         z-index: 1;
+        background-color: rgba(154, 151, 151, 0.389);
+        backdrop-filter: blur(3px);
+        transition: height 10s ease-in-out;
     }
+    .height-custom{
+        height: 100vh;
+    }
+
     .nav_head {
         justify-content: space-between;
     }
+
     .nav_links {
         display: none;
         flex-direction: column;
         gap: 20px;
         padding: 20px;
     }
+
+    .nav_links .list .links {
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 1.1rem;
+    }
+
     .nav_links.mobile_links {
         display: flex;
         flex-direction: column;
         gap: 20px;
     }
-    
+
 }

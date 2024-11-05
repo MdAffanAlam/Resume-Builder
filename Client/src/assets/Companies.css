@@ -1,7 +1,7 @@
 .main-comp {
     position: relative;
     width: 100%; 
-    height: 40vh; 
+    height: 60vh; 
     margin-bottom: 25px;
 }
 .heading-comp{
@@ -36,9 +36,9 @@
     width: 100%;
   }
 
-  @media only screen and (min-width: 600px) and (max-width: 1024px) {
+  @media only screen and (max-width: 1024px) {
     .main-comp{
-        height: 18vh;
+        height: 70vh;
     }
   }
   
@@ -48,7 +48,7 @@
         grid-template-rows: repeat(4,25px);
     }
     .main-comp{
-        height: 30vh;
+        height: 80vh;
     }
   }
 
@@ -61,7 +61,7 @@
     }
     .main-comp{
         margin: 70px 0px;
-        height: 55vh;
+        height: 85vh;
     }
     
   }

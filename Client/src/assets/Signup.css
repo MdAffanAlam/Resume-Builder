@@ -97,7 +97,7 @@
 .password-input-signup button {
     position: absolute;
     border: 1px solid rgb(242, 240, 240);
-    right: 8px;
+    right: 32px;
     top: 7px;
 }
 
@@ -117,9 +117,9 @@
 
 @media only screen and (max-width:485px){
     .sub-signup-conatiner{
-        width: 16.6em;
+        width: 19em;
     }
     .right-side img{
-        width: 13.6em;
+        width: 14em;
     }
 }

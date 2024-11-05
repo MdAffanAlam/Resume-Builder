@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40vh;
+    height: 60vh;
 }
 
 .mySwiper {
@@ -62,21 +62,16 @@
 
 @media only screen and (min-width: 600px) and (max-width: 1024px) {
     .testimonials{
-        height: 20vh;
+        height: 65vh;
     }
   }
 
-  @media only screen and (min-width: 480px) and (max-width: 580px) {
-    .testimonials{
-        height: 20vh;
-    }
-  }
 @media only screen and (max-width:480px) {
     .feedback{
         margin: 14px 0px;
     }
     .testimonials{
-        margin: 40px 0px;
+        margin: 90px 0px;
         height: 40vh;
     }
 }
